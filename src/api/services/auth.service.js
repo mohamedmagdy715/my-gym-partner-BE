@@ -5,12 +5,14 @@ const passport = require("passport");
 const prisma = require("../repository");
 
 class AuthService {
-  static generateJWT(user) {
+  static generateJWT(user, rememberMe) {
     const payload = {
       id: user.id,
       email: user.email,
     };
-    return jwt.sign(payload, secretKey);
+    return jwt.sign(payload, secretKey, {
+      expiresIn: rememberMe ? "15 days" : "2 days",
+    });
   }
 
   static authenticated() {

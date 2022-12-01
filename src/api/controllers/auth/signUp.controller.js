@@ -17,14 +17,10 @@ module.exports = (req, res, next) => {
         password: hashSync(req.body.password, 10),
       },
     })
-    .then((user) => {
-      delete user.password;
-
-      // Sending JWT in the response
+    .then(() => {
       res.send({
         success: true,
-        user,
-        token: authService.generateJWT(user),
+        message: "User registred successfully",
       });
     })
     .catch((err) => {

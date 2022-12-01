@@ -18,3 +18,10 @@ model User {
   lastName  String
   createdAt DateTime @default(now())
 }
+
+model BlacklistedJWT {
+  id        Int      @id @default(autoincrement())
+  value     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}

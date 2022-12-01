@@ -9,6 +9,7 @@ const errorService = require("../../services/error_response.service");
 
 module.exports = (req, res, next) => {
   const emailAddress = sanitizeEmailAddress(req.body.email);
+  const { rememberMe } = req.body;
   prisma.user
     .findUnique({
       where: {
